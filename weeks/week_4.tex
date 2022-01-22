@@ -1,0 +1,131 @@
+\section{Week 4}
+\colorbox{black}{\textbf{\color{white}Conservation of Energy / Energy Equation}}
+\begin{itemize}
+    \item \textbf{\color{orange}Energy Equation} is the application of the \textbf{\color{teal}First law of thermodynamics} to a moving fluid element (control volume). Because the \textbf{\color{teal}First Law} only applies to \textbf{\color{red}equilibrium states}, we assume the fluid passes through a number of \textbf{\color{red}quasi-equilibrium states}.
+    \item The Energy equation can be expressed as:
+    \begin{align*}
+        \begin{pmatrix}
+            \text{Temporal change in}\\
+            \text{energy inside CV}
+        \end{pmatrix} &= \underbrace{\sum \begin{pmatrix}
+            \text{Energy in and out} \\
+            \text{due to \textbf{\color{red}fluid flow}}
+        \end{pmatrix}}_{:= d\dot{E}} \\
+        &- \underbrace{\sum \begin{pmatrix}
+            \text{Energy in and out} \\
+            \text{due to \textbf{\color{red}heat transfer}}
+        \end{pmatrix}}_{:= d\dot{Q}} \\
+        &+ \underbrace{\sum \begin{pmatrix}
+            \text{Work per time done by} \\
+            \text{pressure and stresses on CV}
+        \end{pmatrix}}_{:=d\dot{A}} \\
+        &+ \underbrace{\sum \begin{pmatrix}
+            \text{External energy input} \\
+            \text{e.g. radiation, combustion}
+        \end{pmatrix}}_{:=\dot{q}_s} \\
+        &+ \sum \begin{pmatrix}
+            \text{Work per time done} \\
+            \text{by body force }\;\bm{f} \\
+        \end{pmatrix}
+    \end{align*}
+    \begin{itemize}
+        \item \colorbox{orange}{\textbf{\color{white}Temporal change in energy inside CV}}
+        \begin{itemize}
+            \item Equals to the sum of rate of change of internal energy and kinetic energy
+            \begin{alignat*}{2}
+                &\text{IE} = \rho \, e \cdot d\volume \qquad && \left[\frac{\text{kg}}{m^3}\cdot \frac{J}{\text{kg}}\cdot m^3\right]=[J] \\
+                &\text{KE} = \frac{1}{2}\rho \bm{V}^2 \cdot d\volume \qquad && \left[\frac{\text{kg}}{m^3}\cdot m^3 \cdot \frac{m^2}{s^2}\right]=[J] \\
+                & \text{where }d\volume = dx \, dy \,dz
+            \end{alignat*}
+            \begin{equation*}
+                \begin{pmatrix}
+                    \text{Temporal change in}\\
+                    \text{energy inside CV}
+                \end{pmatrix} = \frac{\partial \left[\rho \cdot \left( e + \frac{\bm{V}^2}{2} \right)\right]}{\partial t} \cdot d\volume
+            \end{equation*}
+        \end{itemize}
+        \item \colorbox{orange}{\textbf{\color{white}Energy in and out due to fluid flow}}
+        \begin{align*}
+            d\dot{E} &= - \left[\frac{\partial \left[\rho\left(e+\frac{\bm{V}^2}{2}\right)\cdot {\color{red}u}\right]}{\partial {\color{red}x}}\right.\\
+            &+\frac{\partial \left[\rho\left(e+\frac{\bm{V}^2}{2}\right)\cdot {\color{red}v}\right]}{\partial {\color{red}y}}\\
+            &+ \left.\frac{\partial \left[\rho\left(e+\frac{\bm{V}^2}{2}\right)\cdot {\color{red}w}\right]}{\partial {\color{red}z}}\right]\cdot d\volume
+        \end{align*}
+        \item \colorbox{orange}{\textbf{\color{white}Energy in and out due to heat transfer}}
+        \begin{itemize}
+            \item By Fourier's Law of Heat Conduction, the heat fluxes can be related to the local temperature gradient
+        \end{itemize}
+        \begin{alignat*}{2}
+            & \dot{q} := \text{Heat Flux} \qquad &&\left[ \frac{W}{m^2} \right] \\
+            & k := \text{Thermal conductivity} \qquad && \left[ \frac{W}{m\cdot K} \right]
+        \end{alignat*}
+        \begin{equation*}
+            d\dot{Q} = \left[\frac{\partial}{\partial x}\left(k \frac{dT}{dx}\right) + \frac{\partial}{\partial y}\left(k \frac{dT}{dy}\right) + \frac{\partial}{\partial z}\left(k \frac{dT}{dz}\right)\right] \cdot d\volume
+        \end{equation*}
+        \item \colorbox{orange}{\textbf{\color{white}Work per time done by pressure and stresses on CV}} 
+        \begin{align*}
+            d\dot{A} &= \left[ - \underbrace{\frac{\partial (p {\color{red}u})}{\partial {\color{red}x}}}_{\text{by pressure}}+ \underbrace{\color{orange}\frac{\partial (\sigma_{xx} u)}{\partial x} + \frac{\partial (\tau_{xy} v)}{\partial x} + \frac{\partial (\tau_{xz} w)}{\partial x}}_{\text{by stresses}} \right] d\volume \\
+            &+\left[ - \underbrace{\frac{\partial (p {\color{red}v})}{\partial {\color{red}y}}}_{\text{by pressure}}+ \underbrace{\color{orange}\frac{\partial (\sigma_{yy} v)}{\partial y} + \frac{\partial (\tau_{yx} v)}{\partial y} + \frac{\partial (\tau_{yz} w)}{\partial y}}_{\text{by stresses}} \right] d\volume \\
+            &+\left[ - \underbrace{\frac{\partial (p {\color{red}w})}{\partial {\color{red}z}}}_{\text{by pressure}}+ \underbrace{\color{orange} \frac{\partial (\sigma_{zz} w)}{\partial z} + \frac{\partial (\tau_{zx} v)}{\partial z} + \frac{\partial (\tau_{zy} w)}{\partial z}}_{\text{by stresses}} \right] d\volume \\
+            d\dot{A} &= - \frac{\partial (p u)}{\partial x} - \frac{\partial (p v)}{\partial y} - \frac{\partial (p w)}{\partial z} + {\color{orange}\Phi}
+        \end{align*}
+        \begin{itemize}
+            \item Dissipation function ${\color{orange}\Phi}$ represents the energy due to deformation work done on the fluid.
+            \item ${\color{orange}\Phi}$ can also be expressed in terms of velocity components:
+            \begin{align*}
+                {\color{orange}\Phi} &= 2\mu  \left[ \left( \frac{\partial u}{\partial x} \right)^2 + \left( \frac{\partial v}{\partial y} \right)^2 + \left( \frac{\partial w}{\partial z} \right)^2 \right] \\
+                &+ \mu \left( \frac{\partial v}{\partial x} +  \frac{\partial u}{\partial y} \right)^2 + \mu \left( \frac{\partial w}{\partial y} + \frac{\partial v}{\partial z} \right)^2 + \mu \left( \frac{\partial u}{\partial z} +  \frac{\partial w}{\partial x} \right)^2 \\
+                &- \frac{2}{3}\mu  \cdot \left( \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} + \frac{\partial w}{\partial z} \right)^2
+            \end{align*}
+        \end{itemize}
+        \item External energy input: $\rho \cdot \bm{\dot{q}_s}$
+        \item Work per time done by body force: $\bm{f} \cdot \bm{V}$
+        \begin{itemize}
+            \item Gravitational force is usually regarded as a body force and its effects of potential energy changes as a source term
+        \end{itemize}
+    \end{itemize}
+    \item \colorbox{orange}{\textbf{\color{white}Putting it all together ...}}
+    \begin{itemize}
+        \item Expanded Form of Energy Equation
+        \begin{align*}
+            & {\color{blue}\rho \left( \frac{\partial e}{\partial t} + u \frac{\partial e}{\partial x} + v \frac{\partial e}{\partial y} + w \frac{\partial e}{\partial z} \right) } = \\ 
+            & {\color{red}\left[\frac{\partial}{\partial x}\left(k \frac{dT}{dx}\right) + \frac{\partial}{\partial y}\left(k \frac{dT}{dy}\right)+ \frac{\partial}{\partial z}\left(k \frac{dT}{dz}\right)\right]} \\
+            & {\color{orange}- \frac{\partial (p u)}{\partial x} - \frac{\partial (p v)}{\partial y} - \frac{\partial (p w)}{\partial z}} + {\color{orange}\Phi} \\
+            &+ \bm{f}\cdot \bm{V} + \rho \cdot \bm{\dot{q}_s}
+        \end{align*}
+        \item Succinct Form of Energy Equation
+        \begin{align*}
+            {\color{blue}\rho \frac{ De}{Dt}} = {\color{red}\nabla \cdot (k \nabla T)} - {\color{orange}p (\nabla \cdot \bm{V})} + {\color{orange}\Phi} + \bm{f}\cdot \bm{V} + \rho \cdot \bm{\dot{q}_s}
+        \end{align*}
+    \end{itemize}
+    \item \colorbox{orange}{\textbf{\color{white}Further Simplifications}}
+    \begin{itemize}
+        \item Unless the engineering problem explicitly states, we assume that $\bm{f}\cdot \bm{V} = 0$ and $\rho \cdot \bm{\dot{q}_s} = 0$.
+        \item For incompressible flow, we have ${\color{orange}p(\nabla \cdot \bm{V})}=0$.
+        \item For ideal gases, we can relate the internal energy $e$ with enthalpy $h$:
+        \begin{align*}
+            h &= e + \frac{p}{\rho} = C_p \cdot T \\
+            \therefore \; e &= C_p \cdot T - \frac{p}{\rho} \\
+            \text{or } \; e &= C_v \cdot T
+        \end{align*}
+        \begin{itemize}
+            \item Energy equation for ideal gases using $C_p$:
+            \begin{align*}
+                \rho C_p \frac{DT}{Dt} &= \nabla \cdot (k\nabla T) + \frac{Dp}{Dt} + \Phi
+            \end{align*}
+            \item Energy equation for ideal gases using $C_v$:
+            \begin{align*}
+                \rho C_v \frac{DT}{Dt} &= \nabla \cdot (k \nabla T) - p (\nabla \cdot \bm{V}) + \Phi
+            \end{align*}
+        \end{itemize}
+    \end{itemize}
+    \item For most practical fluid engineering problems, the local time derivative of pressure $\frac{\partial p}{\partial t}$ (in the term $\frac{Dp}{Dt}$ if we use the $C_p$ formulation) and the dissipation function $\Phi$ can be neglected. The Energy Equation is reduced to
+    \begin{align*}
+        \frac{DT}{Dt} &= \frac{\partial T}{\partial t} + \underbrace{u \frac{\partial T}{\partial x} + v \frac{\partial T}{\partial y} + w \frac{\partial T}{\partial z}}_{\text{advection}} \\
+        &= \frac{k}{\rho C_p} \underbrace{\left[ \frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} + \frac{\partial^2 T}{\partial z^2} \right]}_{\text{diffusion}} \\
+        &= \frac{k}{\rho C_p} (\nabla^2 \cdot T)
+    \end{align*}
+\end{itemize}
+
+\colorbox{black}{\textbf{\color{white}Non-dimensionalization}}
+
+This topic is more question-related. Will be summarized in the last part.

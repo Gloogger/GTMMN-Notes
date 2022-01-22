@@ -1,0 +1,118 @@
+\section{Week 5}
+
+Content in Week 5 does not weigh as heavy as other contents, so the summary will be short.
+
+\vspace{0.5cm}
+
+\colorbox{black}{\textbf{\color{white}Boundary Conditions (BCs)}}
+\begin{itemize}
+    \item \textbf{\color{red}Boundary conditions} (a.k.a. the \textbf{\color{red}initial conditions}) are the \textbf{\color{blue}real driver} for CFD solutions because they strongly dictate the particular solutions obtained from the governing equations.
+\end{itemize}
+
+\colorbox{black}{\textbf{\color{white}Momentum Boundary Conditions}}
+\begin{itemize}
+    \item No-slip wall
+    \begin{itemize}
+        \item A BC on a solid surface for viscous flows which assumes \textbf{\color{teal}zero relative velocity} between the surface and the fluid immediately at the surface
+        \item If the surface is stationary,
+        \begin{equation*}
+            u=v=w=0
+        \end{equation*}
+    \end{itemize}
+    \item Inflow condition
+    \begin{itemize}
+        \item This BC is needed because solutions of the governing equations require at least one velocity component
+        \item E.g. $u=f$ and $v=w=0$ at the inflow boundary ($f$ can be constant or velocity profile)
+    \end{itemize}
+    \item Outflow condition
+    \begin{itemize}
+        \item This BC needs to positioned at locations where the flow is \textbf{\color{red}unidirectional} and where \textbf{\color{blue}surface stresses taken known values}.
+        \item In a fully-developed flow exiting the channel, there is no change in velocity component in the direction across the boundary
+        \item To satisfy stress continuity, the shear forces along the surface are taken to be zero:
+        \begin{equation*}
+            \frac{\partial u}{\partial n} = \frac{\partial v}{\partial n} = \frac{\partial w}{\partial n} = 0
+        \end{equation*}
+    \end{itemize}
+\end{itemize}
+
+
+\colorbox{black}{\textbf{\color{white}Validation and Verification}}
+\begin{itemize}
+    \item  Verification
+    \begin{itemize}
+        \item Check whether the conceptual model is programmed correctly into a computer model
+        \item Are we solving it numerically accurately?
+        \item Provide evidence that the equations are solved right:
+        \begin{itemize}
+            \item Do we have Mesh Sensitivity / Grid Independence/Convergence? Can be examined via key functionals plots (functionals against number of elements) or by grid convergence index (GCI) which quantifies for the grid error
+            \item How about grid quality? 
+            \item Is the residue target (convergence criterion) sufficient?
+            \item Is the spatial and temporal discretization sufficient? Are there enough grid points / enough timesteps?
+            \item Is the chosen discretization scheme accurate?
+        \end{itemize}
+    \end{itemize}
+    \item Validation
+    \begin{itemize}
+        \item Check whether the computer model reflects the actual physical phenomenon.
+        \item Provide evidence the right model is solved:
+        \begin{itemize}
+            \item Are the BCs similar to the actual experimental conditions? Are the boundaries positioned in the right location (e.g. far field boundaries)?
+            \item Is the geometry of bluff body correct?
+            \item Is the right turbulence model being used?
+            \item What is the error between the simulated solutions and the experimental data?
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\colorbox{black}{\textbf{\color{white}Types of Errors}}
+\begin{itemize}
+    \item Acknowledged error
+    \begin{itemize}
+        \item Can be identified with strategic approaches (e.g. approximation, discretization)
+    \end{itemize}
+    \item Unacknowledged error
+    \begin{itemize}
+        \item Cannot be identified with strategic approaches (i.e. programming error) 
+    \end{itemize}
+    \item Truncation error
+    \begin{itemize}
+        \item When we approximate a PDE by a difference formula, we neglect the Higher Order Term (H.O.T.)
+    \end{itemize}
+    \item Discretization error
+    \begin{itemize}
+        \item Difference between exact solution values and those obtained with discretized equations
+    \end{itemize}
+    \item Round-off error
+    \begin{itemize}
+        \item Computers use a finite word length of the real numbers, which leads to rounding errors.
+    \end{itemize}
+\end{itemize}
+
+\colorbox{black}{\textbf{\color{white}Numerical Concepts}}
+\begin{itemize}
+    \item Consistency
+    \begin{itemize}
+        \item If the algebraic equations can be shown to be equivalent to the original governing equations as the grid spacing and time steps tends to zero (i.e. $\Delta x \to 0$ and $\Delta t \to 0$), then the numerical model is consistent.
+    \end{itemize}
+    \item Convergence 
+    \begin{itemize}
+        \item The property of a numerical method to produce a solution which approaches the exact solution as the grid spacing tends to zero
+    \end{itemize}
+    \item Stability
+    \begin{itemize}
+        \item Associated with the damping of errors in the numerical scheme
+    \end{itemize}
+    \item Conservativeness
+    \begin{itemize}
+        \item Ensures global conservation of fluid properties through the domain
+    \end{itemize}
+    \item Boundedness
+    \begin{itemize}
+        \item Related to stability - ensures the solution is bounded by maximum and minimum values of the flow variables
+    \end{itemize}
+    \item Transportiveness
+    \begin{itemize}
+        \item Accounts for directionality of diffusion and convection flows
+    \end{itemize}
+\end{itemize}
+

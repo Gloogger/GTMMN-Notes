@@ -1,0 +1,84 @@
+\section{Week 9}
+\colorbox{black}{\textbf{\color{white}Finite Difference Approximation (FDA)}}
+
+\begin{itemize}
+    \item \textbf{\color{red}Taylor series expansion} are used to approximate the partial derivatives. 
+    \item Truncation errors exist due to higher order terms are ignored. \textbf{\color{orange}Truncation errors are negligible if the system is stable}.
+\end{itemize}
+
+\colorbox{black}{\textbf{\color{white}Finite Difference Methods (FDM)}}
+\begin{itemize}
+    \item FDMs discretize the domain into a grid. 
+    \item Variables are evaluated at the grid points.
+    \item FDM is commonly applied to \textbf{\color{red}structured mesh} as it requires a mesh having a high degree of regularity
+    \item Pros: FDM allows the use of higher-order differencing approximations which provide a higher degree of accuracy in the solution
+    \item \colorbox{teal}{\textbf{\color{white}Approximations of 1st order derivative}}
+    \begin{itemize}
+        \item \textbf{\color{red}Central Difference}
+        \begin{alignat*}{2}
+            &\text{Space:} \qquad && \frac{\partial \phi}{\partial x} = \frac{\phi_{i+1,j}-\phi_{i-1,j}}{2\Delta x} + O(\Delta x^2) \\
+            &\text{Time:}\qquad && \text{N/A}
+        \end{alignat*}
+        \item \textbf{\color{red}Forward Difference}
+        \begin{alignat*}{2}
+            &\text{Space:}\qquad &&\frac{\partial \phi}{\partial x} = \frac{\phi_{i+1,j}-\phi_{i,j}}{\Delta x} + O(\Delta x)\\
+            &\text{Time:}\qquad && \frac{\partial \phi }{\partial t} = \frac{\phi_{i,j}^{n+1}-\phi_{i,j}^{n}}{\Delta t} + O(\Delta t)
+        \end{alignat*}
+        \item \textbf{\color{red}Backward Difference}
+        \begin{alignat*}{2}
+            &\text{Space:} \qquad && \frac{\partial \phi}{\partial x} = \frac{\phi_{i,j}-\phi_{i-1,j}}{\Delta x} + O(\Delta x) \\
+            &\text{Time:} \qquad && \frac{\partial \phi}{\partial t} = \frac{\phi_{i,j}^{n}-\phi_{i,j}^{n-1}}{\Delta t} + O(\Delta t)
+        \end{alignat*}
+    \end{itemize}
+    \item \colorbox{teal}{\textbf{\color{white}Approximation of 2nd order derivative}}
+    \begin{itemize}
+        \item \textbf{\color{red}Central Difference}
+        \begin{alignat*}{2}
+            &\text{Space:} \qquad && \frac{\partial^2 \phi}{\partial x^2} = \frac{\phi_{i+1,j}-2\phi_{i,j}+\phi_{i-1,j}}{\Delta x^2} + O(\Delta x^2)
+        \end{alignat*}
+    \end{itemize}
+\end{itemize}
+
+\colorbox{black}{\textbf{\color{white}Finite Volume Methods (FVM)}}
+
+\begin{itemize}
+    \item FVMs discretize the domain into a number of contiguous control volumes.
+    \item Variables are evaluated at the centroids of CV, and interpolation (a.k.a discretization schemes) is used to obtain variables values at the control volume face. 
+    \item FVM can be applied to both \textbf{\color{red}structured} and \textbf{\color{red}unstructured} mesh.
+    \item Cons: higher-order ($>$2nd order) differencing approximations are more difficult to obtain.
+    \item \colorbox{orange}{\textbf{\color{white}Approximation Schemes of Surface Variables}}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1.0\linewidth]{images/summary_discretization_scheme.png}
+    \end{figure}
+    \begin{itemize}
+        \item \textbf{\color{red}Central Difference}
+        \begin{align*}
+            \phi_e &= \frac{1}{2} (\phi_P + \phi_E) \\
+            \text{where }\; \phi_e &= \text{value at face}\\
+            \phi_P &= \text{value at owner cell} \\
+            \phi_E &= \text{value at neighbor cell}
+        \end{align*} 
+        Alternatively, using subscript notations,
+        \begin{align*}
+            \phi_f &= \frac{1}{2} (\phi_i + \phi_{i+1}) \\
+            \text{where }\; \phi_f &= \text{value at face}\\
+            \phi_i &= \text{value at owner cell} \\
+            \phi_{i+1} &= \text{value at neighbor cell}
+        \end{align*} 
+        \begin{itemize}
+            \item Pros: 2nd order accuracy
+            \item Cons: can become unstable; may give large undershoots or overshoots
+        \end{itemize}
+        \item \textbf{\color{red}Upwind Difference (1st order)}
+        \begin{alignat*}{2}
+            & \phi_f = \phi_{i} \qquad && F_e > 0 \; \text{(backward)} \\
+            & \phi_f = \phi_{i+1} \qquad && F_e < 0 \; \text{(forward)}
+        \end{alignat*}
+        An example approximating the term $u \frac{\partial T}{\partial x}$:
+        \begin{alignat*}{2}
+            & \frac{\partial T}{\partial x} = \frac{T_{i}^{n}-T_{i-1}^{n}}{\Delta x} \qquad && \text{if }\; u > 0 \\
+            & \frac{\partial T}{\partial x} = \frac{T_{i+1}^{n}-T_{i}^{n}}{\Delta x} \qquad && \text{if }\; u < 0 
+        \end{alignat*}
+    \end{itemize}
+\end{itemize}

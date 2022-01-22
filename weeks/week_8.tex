@@ -1,0 +1,72 @@
+\section{Week 8}
+
+\colorbox{black}{\textbf{\color{white}Turbulence Models}}
+
+\begin{itemize}
+    \item Standard $k-\varepsilon$, RNG $k-\varepsilon$, Realizable $k-\varepsilon$, Standard $k-\omega$, Transition SST, and Reynold Stress model are RANS-based Model.
+    \item Detached Eddy Simulation and Large Eddy Simulation are not RANS based Model.
+    \item The most accurate RANS turbulence model in terms of drag coefficient w.r.t. air flowing over a cylinder body is \textbf{\color{orange}Transition SST Model}, which is better in the following aspects:
+    \begin{itemize}
+        \item convergence and stability
+        \item performs better for high speed flows
+        \item combines the fine features of both $k-\varepsilon$ and $k-\omega$ models (at free-stream and near wall regions respectively)
+        \item Transition SST requires fine mesh near the wall region
+    \end{itemize}
+\end{itemize}
+
+\colorbox{black}{\textbf{\color{white}Pros \& Cons}}
+
+\begin{itemize}
+    \item \colorbox{orange}{\textbf{\color{white}Standard $k-\varepsilon$}}
+    \begin{itemize}
+        \item {\color{red}Robust, efficient, easy to apply}
+        \item {\color{red}Solves better at the free steam}
+        \item {\color{blue}Performs poorly for complex flows involving severe pressure gradient, separation, or strong streamline curative}
+        \item {\color{blue}Over-predicts the TKE energy at the wall region}
+    \end{itemize}
+    \item \colorbox{orange}{\textbf{\color{white}RNG $k-\varepsilon$}}
+    \begin{itemize}
+        \item {\color{red}Enhanced version of standard $k-\varepsilon$ model with additional term in $\epsilon$ equation}, which accounts for interaction between turbulence and mean shear.
+        \item {\color{red}Suitable for complex shear flows involving:}
+        \begin{itemize}
+            \item Strong streamline curvature and rapid strain;
+            \item moderate swirl and vortices;
+            \item Separated flows;
+            \item Wall heat and mass transfer;
+        \end{itemize}
+        \item {\color{blue}Inappropriate for prediction of round jet flows}
+    \end{itemize}
+    \item \colorbox{orange}{\textbf{\color{white}Realizable $k-\varepsilon$}}
+    \begin{itemize}
+        \item {\color{red}Offer same benefits as RNG $k-\varepsilon$}
+        \item {\color{red}Better convergence as compared to RNG $k-\varepsilon$}
+        \item {\color{red}Includes eddy-viscosity concept}
+        \item {\color{red}Suitable for flows involving:}
+        \begin{itemize}
+            \item Planar and round jets;
+            \item \textbf{Rotation and recirculation}
+        \end{itemize}
+    \end{itemize}
+    \item \colorbox{orange}{\textbf{\color{white}Standard $k-\varepsilon$}}
+    \begin{itemize}
+        \item {\color{red}Superior performance for wall-bounded boundary layer (e.g. flow in pipe)}
+        \item {\color{blue}This model under-predicts the TKE energy at the free stream}
+    \end{itemize}
+    \item \colorbox{orange}{\textbf{\color{white}SST $k-\omega$}}
+    \begin{itemize}
+        \item {\color{red}Combines the benefits of $k-\varepsilon$ and $k-\omega$ models}
+        \item {\color{red}Has a better transition between the free stream and near wall regions}
+        \item {\color{blue}Requires mesh resolution / refinement near the wall}
+    \end{itemize}
+    \item \colorbox{orange}{\textbf{\color{white}Reynolds Stress}}
+    \begin{itemize}
+        \item {\color{red}Physically the most reliable RANS model}
+        \item {\color{red}Suitable for:}
+        \begin{itemize}
+            \item complex 3D flows with strong streamline curvature;
+            \item Strong swirl/rotation
+        \end{itemize}
+        \item {\color{blue}More CPU time and memory requirement}
+    \end{itemize}
+\end{itemize}
+

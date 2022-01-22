@@ -1,0 +1,44 @@
+\section{Week 7}
+
+\colorbox{black}{\textbf{\color{white}Time-Averaging}}
+
+\begin{itemize}
+    \item \colorbox{orange}{\textbf{\color{white}Reynolds-Averaging}}
+    \begin{itemize}
+        \item A general instantaneous flow property $\phi$ is decomposed into a sum of its steady mean motion $\overline{\phi}$ and a fluctuating / eddy motion $\phi '$
+        \begin{align*}
+            \phi &= \overline{\phi} + \phi ' \\
+            \text{where }\; \overline{\phi} &:= \frac{1}{t_0} \int_{0}^{t_0} \phi \, dt \\
+            \overline{\phi '} &:= \frac{1}{t_0} \int_{0}^{t_0} \phi ' \, dt \equiv 0 
+        \end{align*}
+        where $t_0$ is some sufficiently large time interval greater than the time scales of the slowest variations.
+        \item \colorbox{teal}{\textbf{\color{white}Useful Formulae}}
+        \begin{alignat*}{3}
+            & \overline{\overline{\alpha}} = \overline{\alpha}; \quad && \overline{\alpha+\beta}= \overline{\alpha} + \overline{\beta}; \quad && \overline{\overline{\alpha}\beta} = \overline{\alpha}\overline{\beta}; \\
+            & \overline{\alpha \beta} = \overline{\alpha}\overline{\beta} + \overline{\alpha ' \beta '}; \quad && \frac{\overline{\partial \alpha}}{\partial s} = \frac{\partial \overline{\alpha}}{\partial s}; \quad && \overline{\int \alpha \, ds} = \int \overline{\alpha} \, ds \\
+            & \rho = \overline{\rho}+ \rho ' \quad && u_i = \overline{u}_i + u_i ' \quad && \overline{\bar{\rho} \bar{\alpha} \beta '} = 0
+        \end{alignat*}
+        \textbf{\color{red}N.B.} fluctuations in dynamic viscosity $\mu$, thermal conductivity $k$, specific heat $C_p$, and mass diffusivity $D$ are neglected in majority of practical applications.
+    \end{itemize}
+    \item \colorbox{orange}{\textbf{\color{white}Favre-Averaging}}
+    \begin{itemize}
+        \item Favre-averaging employs a mass-weighted mean property, viz. $\widetilde{\phi}$
+        \begin{alignat*}{2}
+            &\widetilde{\phi} = \frac{\overline{\rho \phi}}{\overline{\phi}} \qquad && \phi = \widetilde{\phi} + \phi ''\\
+            &\overline{\rho \phi} = \overline{\rho}\widetilde{\phi} + \overline{\rho \phi ''} \qquad && \overline{\rho \phi '' } \equiv 0 \\
+            &\rho = \overline{\rho} +\rho ' \qquad && \overline{\rho u_i } = \overline{\rho} \widetilde{u_i}
+        \end{alignat*}
+    \end{itemize}
+\end{itemize}
+
+\colorbox{black}{\textbf{\color{white}Boussinesq Approximation}}
+\begin{itemize}
+    \item It links the Reynolds stresses to the mean rates of deformation \textbf{\color{red}by assuming that the momentum transferred by the turbulent eddies can be modelled by the eddy viscosities.}
+    \begin{alignat*}{2}
+        &\text{RANS} \quad && - \overline{\rho} \, \overline{u_i ' u_j '} = \mu_T \left(\frac{\partial \overline{u}_i}{\partial x_j} + \frac{\partial \overline{u}_j}{\partial x_i}\right) - \frac{2}{3} \left(\mu_T \frac{\partial \overline{u}_i}{\partial x_j} + \overline{\rho} k\right)\delta_{ij} \\
+        &\text{FANS} \quad && - \overline{\rho} \, \overline{u_i '' u_j ''} = \mu_T \left(\frac{\partial \widetilde{u}_i}{\partial x_j} + \frac{\partial \widetilde{u}_j}{\partial x_i}\right) - \frac{2}{3} \left(\mu_T \frac{\partial \widetilde{u}_i}{\partial x_j} + \overline{\rho} k\right)\delta_{ij} 
+    \end{alignat*}
+    where $\mu_T$ is the eddy viscosity, $k$ is the turbulent kinetic energy, and $\delta_{ij}$ is the Kronecker Delta
+    \item \textbf{\color{orange}Intuitive Interpretation:} If an eddy is more resistant to the departing momentum, then it means that the eddy can take up more viscous force.
+    \item The purpose of Boussinesq approximation is to express the resolvable Reynolds stress tensor into a function of the mean flow (which consists of known terms).
+\end{itemize}

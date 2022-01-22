@@ -1,0 +1,214 @@
+\section{Week 3}
+\colorbox{black}{\textbf{\color{white}Governing equations}}
+
+\begin{itemize}
+    \item Governing equations are mathematical statements of the \textbf{{\color{red}conservation laws of physics}}:
+    \begin{itemize}
+        \item \textbf{\color{orange}Conservation of Mass} (a.k.a. Continuity Equation)
+        \begin{itemize}
+            \item Mass is conserved for the fluid
+        \end{itemize}
+        \item \textbf{\color{orange}Conservation of Momentum} (a.k.a. Newton's 2nd Law / the Navier-Stokes Equation)
+        \begin{itemize}
+            \item The rate of change of momentum equals the sum of forces acting on the fluid
+        \end{itemize}
+        \item \textbf{\color{orange}Conservation of Energy} (a.k.a. 1st Law of Thermodynamics)
+        \begin{itemize}
+            \item The rate of change of energy equals the sum of rate of heat addition to and the rate of work done on the fluid
+        \end{itemize}
+        \item \textbf{\color{orange}Species Transport Equation} (a.k.a. Principal of Species Conservation)
+    \end{itemize}
+\end{itemize}
+
+\colorbox{black}{\textbf{\color{white}Auxiliary / Completion Equations}}
+\begin{itemize}
+    \item Completion equations are relations needed to complete data to solve the \textbf{governing equations}
+    \item Examples:
+    \begin{itemize}
+        \item Equations of State: Gas Law, Density Relations
+        \item Constitutive Relations: Viscosity, Turbulence Models
+        \item Fluid Property Relations: Conductivity, Specific Heat
+        \item Initial / Boundary Conditions
+        \item Equations specific to a given problem
+    \end{itemize}
+\end{itemize}
+
+\colorbox{black}{\textbf{\color{white}Substantial Derivative}}
+\begin{itemize}
+    \item Substantial Derivative is also called \textbf{\color{orange}total derivative}, \textbf{\color{red}convective derivative}, \textbf{\color{blue}material derivative}, or \textbf{\color{teal}substantive derivative.}
+    \begin{itemize}
+        \item Substantial derivative $\frac{D\phi}{Dt}$ is the time rate of change following a moving fluid element
+        \item Partial derivative $\frac{\partial \phi}{\partial t}$ is the time rate of change  at a fixed location
+    \end{itemize}
+    \item As a math concept, the substantial derivative is defined as
+    \begin{equation*}
+        \frac{D(\cdot)}{Dt} = \frac{\partial (\cdot)}{\partial t} + \bm{V}\cdot \frac{\partial (\cdot )}{\partial \bm{x}}
+    \end{equation*}
+    For example, if temperature $T$ is a function of time and spatial coordinates, then the material derivative of $T(t,x,y,z)$ is,
+    \begin{align*}
+        \frac{DT}{Dt} &= \frac{\partial T}{\partial t} + \bm{V} \cdot \nabla T \\
+        &= \frac{\partial T}{\partial t} + u \frac{\partial T}{\partial x} + v \frac{\partial T}{\partial y} + w \frac{\partial T}{\partial z} \\
+        &= \frac{\partial T}{\partial t} + \left(\frac{\partial T}{\partial x}\right)\left(\frac{\partial x}{\partial t}\right) + \left(\frac{\partial T}{\partial y}\right)\left(\frac{\partial y}{\partial t}\right)\\
+        &+\left(\frac{\partial T}{\partial z}\right)\left(\frac{\partial z}{\partial t}\right) \\
+        &\equiv \left.\left.\frac{d}{dt}\right[T(t,x,y,z)\right]
+    \end{align*}
+    \item For a general variable property \textbf{per unit mass} denoted as $\phi$, we have the \textbf{\color{orange}conservative form} of general variable property equation:
+    \begin{equation*}
+        \frac{D\phi }{D t} = \frac{\partial \phi}{\partial t} + u \frac{\partial \phi}{\partial x} + v \frac{\partial \phi}{\partial y} + w \frac{\partial \phi}{\partial z}
+    \end{equation*}
+    if $\phi$ is in \textbf{per unit volume}, we have the \textbf{\color{orange}non-conservative form}:
+    \begin{equation*}
+        \rho\frac{D\phi }{D t} = \rho \frac{\partial \phi}{\partial t} + \rho u \frac{\partial \phi}{\partial x} + \rho v \frac{\partial \phi}{\partial y} + \rho w \frac{\partial \phi}{\partial z}
+    \end{equation*}
+    \item Only the \textbf{\color{orange}non-conservative form} of the general variable property equation is used to derive the momentum theorem.
+\end{itemize}
+
+\colorbox{black}{\textbf{\color{white}Continuity Equation / Mass Conservation}}
+\begin{itemize}
+    \item Developed from the concept: 
+    \begin{equation*}
+        \frac{\partial m}{\partial t}= \sum_{\text{in}}\dot{m} - \sum_{\text{out}}\dot{m}
+    \end{equation*}
+    \item \colorbox{orange}{\textbf{\color{white}General Form:}}
+    \begin{align*}
+        &\frac{\partial \rho}{\partial t} = - \frac{\partial (\rho u)}{\partial x} - \frac{\partial (\rho v)}{\partial v} - \frac{\partial (\rho w)}{\partial z} \\
+        \text{or }\; &\frac{\partial \rho}{\partial t} + \frac{\partial (\rho u)}{\partial x} + \frac{\partial (\rho v)}{\partial v} + \frac{\partial (\rho w)}{\partial z} = 0
+    \end{align*}
+    \item \colorbox{orange}{\textbf{\color{white}Vector Form:}}
+    \begin{equation*}
+        \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \bm{V}) = 0
+    \end{equation*}
+    \item \colorbox{teal}{\textbf{\color{white}Simplifications}}
+    \begin{itemize}
+        \item When the flow is \textbf{\color{red}steady state}, the partial derivative w.r.t. time is zero, leaving
+        \begin{align*}
+            {\color{red}\cancelto{0}{\color{black}\frac{\partial \rho}{\partial t}}} + \nabla \cdot (\rho \bm{V}) &= 0
+        \end{align*}
+        \item For an \textbf{\color{purple}incompressible fluid}, we have $\rho =$ constant. Hence, the derivative w.r.t. time is zero and $\rho$ can be factored out the partial derivatives w.r.t. space, leaving
+        \begin{align*}
+            \frac{\partial u}{\partial x} + \frac{\partial  v}{\partial y} + \frac{\partial w}{\partial z} &= 0 \\
+            \nabla \cdot \bm{V} &= 0
+        \end{align*}
+    \end{itemize}
+    \item \colorbox{teal}{\textbf{\color{white}Separation of Density \& Velocity Vectors}}
+    \begin{itemize}
+        \item Using the product rule, the general form of continuity equation becomes,
+        \begin{align*}
+            {\color{blue}\underbrace{\frac{\partial \rho}{\partial t} + \bm{V}\cdot \nabla \rho}_{:=\frac{D\rho}{Dt}}} + \rho (\nabla \cdot \bm{V}) &= 0
+        \end{align*}
+        \item If the material is incompressible, then $\rho$ cannot change, so $\frac{D\rho}{Dt}$ must be zero. Thus,
+        \begin{equation*}
+            \rho (\nabla \cdot \bm{V}) = 0
+        \end{equation*}
+    \end{itemize}
+\end{itemize}
+
+
+
+\colorbox{black}{\textbf{\color{white}Key Properties of Momentum Equation}}
+\begin{itemize}
+    \item A moving fluid element experiences three types of force: \textbf{\color{blue}body forces}, \textbf{\color{red}surface forces}, \textbf{external forces}.
+    \item \textbf{\color{blue}Body forces} are due to \textbf{\color{teal}external source}, e.g. gravitational forces, magnetic or electrical forces.
+    \item \textbf{\color{red}Surface forces} are due to surface stresses acting on the control volume, which include normal stress $\sigma_{xx}$ and tangential stresses $\tau_{yx}$ and $\tau_{zx}$. 
+    \begin{itemize}
+        \item Normal stresses are caused by pressure p
+        \item Tangential stresses are caused by viscosity. For Newtonian fluids, by Newton's Law of Viscosity, the tangential stresses can be related to linear deformation by the \textbf{\color{orange}first dynamic viscosity constant $\mu$}, and to the volumetric deformation using the \textbf{\color{orange}second dynamic viscosity constant $\lambda$}:
+        \begin{align*}
+            \tau_{xx} &= {\color{red}2 \mu \frac{\partial u}{\partial x} }+ \lambda \left[ \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} + \frac{\partial w}{\partial z} \right] \\
+            \tau_{yy} &= {\color{red}2 \mu \frac{\partial v}{\partial y}} + \lambda \left[ \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} + \frac{\partial w}{\partial z} \right] \\
+            \tau_{zz} &= {\color{red}2 \mu \frac{\partial w}{\partial z} } + \lambda \left[ \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} + \frac{\partial w}{\partial z} \right] \\
+            \tau_{{\color{red}x}{\color{blue}y}} &= \tau_{yx} = \mu \left( \frac{\partial {\color{blue}v}}{\partial {\color{red}x}} + \frac{\partial {\color{red}u}}{\partial {\color{blue}y}} \right) \\
+            \tau_{{\color{red}x}{\color{blue}z}} &= \tau_{zx} = \mu \left( \frac{\partial {\color{blue}w}}{\partial {\color{red}x}} + \frac{\partial {\color{red}u}}{\partial {\color{blue}z}} \right) \\
+            \tau_{{\color{red}y}{\color{blue}z}} &= \tau_{zy} = \mu \left( \frac{\partial {\color{blue}w}}{\partial {\color{red}y}} + \frac{\partial {\color{red}v}}{\partial {\color{blue}z}} \right)
+        \end{align*}
+        \item Stokes Hypothesis: $\lambda = -\frac{2}{3} \mu$ (good approximation for gases)
+        \item Kinematic viscosity: $\nu = \frac{\mu}{\rho}$
+    \end{itemize}
+\end{itemize}
+
+
+
+\colorbox{black}{\textbf{\color{white}Navier-Stokes Equation / Momentum Equation}}
+\begin{itemize}
+    \item The following form is for a \textbf{\color{red}Newtonian fluid} reaching \textbf{\color{orange}steady state (constant fluid properties)} in the \textbf{\color{teal}absence of body forces}:
+    \begin{align*}
+        \underbrace{\frac{D{\color{red}u}}{Dt}}_{\text{accel.}} &= \underbrace{\frac{\partial {\color{red}u}}{\partial t}}_{\text{local accel.}} + \underbrace{u \frac{\partial {\color{red}u}}{\partial x} + v \frac{\partial {\color{red}u}}{\partial y} + w \frac{\partial {\color{red}u}}{\partial z}}_{\text{advection}} \\
+        &= - \underbrace{\frac{1}{\rho}\frac{\partial p}{\partial {\color{red}x}}}_{\text{pressure gradient}} + \underbrace{\nu \left[ \frac{\partial^2 {\color{red}u}}{\partial x^2} + \frac{\partial^2 {\color{red}u}}{\partial y^2} + \frac{\partial^2 {\color{red}u}}{\partial z^2} \right]}_{\text{diffusion}} \\
+        &= \frac{1}{\rho}\frac{\partial p}{\partial {\color{red}x}} + \nu \nabla^2 {\color{red}u} \\
+        \\
+        \frac{D{\color{red}v}}{Dt} &= \frac{\partial {\color{red}v}}{\partial t} + u \frac{\partial {\color{red}v}}{\partial x} + v \frac{\partial {\color{red}v}}{\partial y} + w \frac{\partial {\color{red}v}}{\partial z} \\
+        &= - \frac{1}{\rho}\frac{\partial p}{\partial {\color{red}y}} + \nu \left[ \frac{\partial^2 {\color{red}v}}{\partial x^2} + \frac{\partial^2 {\color{red}v}}{\partial y^2} + \frac{\partial^2 {\color{red}v}}{\partial z^2} \right]\\
+        \\
+        \frac{D{\color{red}w}}{Dt} &= \frac{\partial {\color{red}w}}{\partial t} + u \frac{\partial {\color{red}w}}{\partial x} + v \frac{\partial {\color{red}w}}{\partial y} + w \frac{\partial {\color{red}w}}{\partial z} \\
+        &= - \frac{1}{\rho}\frac{\partial p}{\partial {\color{red}z}} + \nu \left[ \frac{\partial^2 {\color{red}w}}{\partial x^2} + \frac{\partial^2 {\color{red}w}}{\partial y^2} + \frac{\partial^2 {\color{red}w}}{\partial z^2} \right]
+    \end{align*}
+    Combining equations in the three directions give the succinct form of:
+    \begin{align*}
+        \frac{D\bm{V}}{Dt} &= -\frac{1}{\rho} \nabla p + \nu \nabla^2 \bm{V}\\
+        \rho \frac{D\bm{V}}{Dt} &= - \nabla p + \mu \nabla^2 \bm{V}
+    \end{align*}
+    \item For \textbf{\color{orange}steady flow}, the local acceleration terms are zero. The NS equation can be reduced to
+    \begin{equation*}
+        \rho (\bm{V}\cdot \nabla)\bm{V} = -\nabla p + \mu \nabla^2 \bm{V}
+    \end{equation*}
+    \item Meaning of each terms:
+    \begin{itemize}
+        \item \textbf{\color{red}Local acceleration / Local derivative}: 
+        \begin{itemize}
+            \item $\frac{\partial u}{\partial t}$, $\frac{\partial v}{\partial t}$, $\frac{\partial w}{\partial z}$
+            \item time-dependent unsteady term
+        \end{itemize}
+        \item \textbf{\color{teal}Advection / Convection term}
+        \begin{itemize}
+            \item e.g. $u \frac{\partial u}{\partial x} + v \frac{\partial u}{\partial y} + w \frac{\partial u}{\partial z}$
+            \item Represent inertial force of the fluid flow
+            \item $u \frac{\partial u}{\partial x} = $ acceleration due to motion along x-axis
+            \item $v \frac{\partial u}{\partial y} = $ acceleration due to motion along y-axis
+        \end{itemize}
+        \item \textbf{\color{blue}Diffusion term}
+        \begin{itemize}
+            \item e.g. $\nu \nabla^2 \bm{V}$
+            \item Represent diffusion of fluid properties (in this case, the viscous force)
+        \end{itemize}
+        \item \textbf{\color{olive}Source term}
+        \begin{itemize}
+            \item Generation and dissipation term for the transport properties
+            \item Since we assume that there is not acting body force, the momentum of the fluid is driven by pressure gradient
+        \end{itemize}
+    \end{itemize}
+    \item Number of unknowns:
+    \begin{itemize}
+        \item There are 4 equations (3 equations from Navier-Stokes for velocity components and 1 from Continuity Equation)
+        \item 6 unknowns: 
+        \begin{itemize}
+            \item Three velocity components: $u$, $v$, $w$;
+            \item density: $\rho$;
+            \item viscosity: $\nu$;
+            \item thermodynamic pressure: $p$
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\colorbox{black}{\textbf{\color{white}Assumptions Enabled by Incompressible Flow}}
+\begin{itemize}
+    \item A incompressible flow is defined as the one in which $\nabla \cdot \bm{V} = 0$, which is equivalent to $\frac{D\rho}{Dt} = 0$
+    \item \textbf{\color{teal}It is not necessarily true} that $\frac{D\rho}{Dt}=0$ implies both $\frac{\partial \rho}{\partial t}=0$ and $\nabla \rho = 0$ independently. $\frac{D\rho}{Dt}=0$ Only implies that the sum of these two terms are zero. 
+    \begin{itemize}
+        \item An example: Consider $\rho(x,t)=x-at$ where $a = \frac{\partial x}{\partial t}= u$.
+        \begin{align*}
+            \frac{D\rho}{Dt} &= \frac{\partial \rho}{\partial t} + \bm{V}\cdot \nabla \rho \\
+            &= -a + \begin{bmatrix}
+                u \\
+                {\color{red}\cancelto{0}{\color{black}v}} \quad \\
+                {\color{red}\cancelto{0}{\color{black}w}} \quad
+            \end{bmatrix} \cdot \begin{bmatrix}
+                \frac{\partial \rho}{\partial x} \\
+                \frac{\partial \rho}{\partial y} \\
+                \frac{\partial \rho}{\partial z} 
+            \end{bmatrix} \\
+            &= -a +u \cdot 1 \\
+            &= -a + a =0
+        \end{align*}
+    \end{itemize}
+    \item For a \textbf{\color{red}homogeneous} incompressible flow, which means that it has constant density throughout, i.e. $\rho =$ constant, we have $\frac{\partial \rho}{\partial t}=0$ and $\nabla \rho = 0$.
+\end{itemize}
